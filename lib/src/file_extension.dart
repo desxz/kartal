@@ -28,3 +28,10 @@ extension FileTypeExtension on File {
   bool get isAudioFile => fileType == FileType.AUDIO ? true : false;
   bool get isTextFile => fileType == FileType.TEXT ? true : false;
 }
+
+extension FileSizeExtension on File {
+  bool maxFileSizeKB(int size) => (lengthSync() / 1024) >= size ? false : true;
+  bool maxFileSizeMB(int size) =>
+      (lengthSync() / (1024 * 1024)) >= size ? false : true;
+  bool maxFileSizeBYTE(int size) => lengthSync() >= size ? false : true;
+}
