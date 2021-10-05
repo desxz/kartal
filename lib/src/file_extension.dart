@@ -31,10 +31,18 @@ extension FileTypeExtension on File {
 }
 
 extension FileSizeExtension on File {
-  bool maxFileSizeKB(int size) => (lengthSync() / 1024) >= size ? false : true;
-  bool maxFileSizeMB(int size) =>
-      (lengthSync() / (1024 * 1024)) >= size ? false : true;
-  bool maxFileSizeBYTE(int size) => lengthSync() >= size ? false : true;
+  bool isMaxFileSizeKB(int size) =>
+      (lengthSync() / 1024) <= size ? true : false;
+  bool isMaxFileSizeMB(int size) =>
+      (lengthSync() / 1024 * 1024) <= size ? true : false;
+
+  bool isMinFileSizeKB(int size) =>
+      (lengthSync() / 1024) >= size ? true : false;
+  bool isMinFileSizeMB(int size) =>
+      (lengthSync() / 1024 * 1024) >= size ? true : false;
+
+  double get fileSizeMB => (lengthSync() / (1024 * 1024));
+  double get fileSizeKB => (lengthSync() / 1024);
 }
 
 extension FileNameExtension on File {
