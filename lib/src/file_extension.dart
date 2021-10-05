@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:mime/mime.dart';
 import 'package:kartal/src/constants/file_constants.dart';
+import 'package:path/path.dart';
 
 // ignore: constant_identifier_names
 enum FileType { IMAGE, VIDEO, AUDIO, TEXT, UNKNOWN }
@@ -34,4 +35,8 @@ extension FileSizeExtension on File {
   bool maxFileSizeMB(int size) =>
       (lengthSync() / (1024 * 1024)) >= size ? false : true;
   bool maxFileSizeBYTE(int size) => lengthSync() >= size ? false : true;
+}
+
+extension FileNameExtension on File {
+  String get getFileName => basename(path);
 }
